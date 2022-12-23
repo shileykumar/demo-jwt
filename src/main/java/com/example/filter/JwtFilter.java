@@ -1,6 +1,6 @@
 package com.example.filter;
 
-import com.example.service.CustomUserDetailsService;
+import com.example.service.impl.CustomUserDetailsService;
 import com.example.util.JwtUtil;
 import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,9 +41,9 @@ public class JwtFilter extends OncePerRequestFilter {
             try {
                 username = jwtTokenUtil.getUsernameFromToken(jwtToken);
             } catch (IllegalArgumentException e) {
-                System.out.println("Unable to get JWT Token");
+                logger.warn("Unable to get JWT Token");
             } catch (ExpiredJwtException e) {
-                System.out.println("JWT Token has expired");
+                logger.warn("JWT Token has expired");
             }
         } else {
             logger.warn("JWT Token does not begin with Bearer String");

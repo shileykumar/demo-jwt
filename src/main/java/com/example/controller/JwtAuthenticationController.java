@@ -1,7 +1,7 @@
 package com.example.controller;
 
-import com.example.entity.JwtRequest;
-import com.example.entity.JwtResponse;
+import com.example.payload.JwtRequest;
+import com.example.payload.JwtResponse;
 import com.example.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

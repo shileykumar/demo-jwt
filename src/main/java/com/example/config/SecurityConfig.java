@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
@@ -50,8 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         // We don't need CSRF for this example
         httpSecurity.csrf().disable()
+
                 // dont authenticate this particular request
-                .authorizeRequests().antMatchers("/api/authenticate").permitAll()
+                .authorizeRequests().antMatchers("/api/authenticate","/api/users").permitAll()
+
                 // all other requests need to be authenticated
                 .anyRequest().authenticated()
                 .and()
